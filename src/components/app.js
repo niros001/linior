@@ -2,11 +2,8 @@ import React from 'react';
 import { Router, Location, Redirect } from '@reach/router';
 import ScrollToTopBtn from './menu/ScrollToTop';
 import Header from './menu/header';
-import Home from './pages/home';
-import Home1 from './pages/home1';
-import Home2 from './pages/home2';
-import Explore from './pages/explore';
-import Explore2 from './pages/explore2';
+import Home from './pages/home1';
+import Explore from './pages/explore2';
 import Helpcenter from './pages/helpcenter';
 import Rangking from './pages/rangking';
 import Colection from './pages/colection';
@@ -67,10 +64,7 @@ const app= () => (
         <Home exact path="/">
           <Redirect to="/home" />
         </Home>
-        <Home1 path="/home1" />
-        <Home2 path="/home2" />
         <Explore path="/explore" />
-        <Explore2 path="/explore2" />
         <Helpcenter path="/helpcenter" />
         <Rangking path="/rangking" />
         <Colection path="/colection" />
@@ -97,7 +91,7 @@ const app= () => (
         </ScrollTop>
       </PosedRouter>
     <ScrollToTopBtn />
-    
+
   </div>
 );
 export default app;
