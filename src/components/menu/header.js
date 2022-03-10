@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Breakpoint, { BreakpointProvider, setDefaultBreakpoints } from "react-socks";
+import {useMoralis} from 'react-moralis';
 import { header } from 'react-bootstrap';
 import { Link } from '@reach/router';
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -24,10 +25,8 @@ const NavLink = props => (
     />
 );
 
-
-
 const Header= function() {
-
+  const {isAuthenticated, logout, account} = useMoralis();
   const [openMenu, setOpenMenu] = React.useState(false);
   const [openMenu1, setOpenMenu1] = React.useState(false);
   const [openMenu2, setOpenMenu2] = React.useState(false);
@@ -273,11 +272,15 @@ const Header= function() {
             </BreakpointProvider>
 
             <div className='mainside'>
-              <NavLink to="/wallet" className="btn-main">Connect Wallet</NavLink>
+              {!isAuthenticated && <NavLink to="/wallet" className="btn-main">Connect Wallet</NavLink>}
+              {isAuthenticated && <NavLink to="/wallet" className="btn-main" onClick={(e) => {
+                e.preventDefault();
+                logout();
+              }}>Logout</NavLink>}
             </div>
 
           </div>
-
+          {isAuthenticated && <div style={{color: 'white', position: 'absolute', bottom: 0, fontSize: 12}}>Logged as: {account}</div>}
           <button className="nav-icon" onClick={() => btn_icon(!showmenu)}>
             <div className="menu-line white" />
             <div className="menu-line1 white" />
